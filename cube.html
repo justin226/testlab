@@ -3,6 +3,11 @@
   <head>
     <title>
     </title>
+    <style id="time">
+      #box:hover{
+        animation: rotate 15s linear infinite;
+      }
+    </style>
     <style>
       #container{
         width: 400px;
@@ -21,7 +26,7 @@
         color: orange;
         font: 80px impact;
         text-align: center;
-        animation: rotate 15s linear infinite;
+        transition-timing-function: ease-in-out;
       }
       
       #box div{
@@ -80,5 +85,13 @@
         <div id="bottom">BOTTOM</div>
       </div>
     </div>
+    <input type="range" id="speed" value="" min="0" max="50" value="40"><p id="speedind">15 revolutions per second</p>
+    <script>
+      document.getElementById("speed").addEventListener("change", function(){
+        var speed = (50 - parseInt(document.getElementById("speed").value)) + 5;
+        document.getElementById("speedind").innerHTML = speed + " revolutions per second";
+        document.getElementById("time").innerHTML = "#box:hover{\n  animation: rotate " + speed + "s linear infinite;\n}"
+      });
+    </script>
   </body>
 </html>
