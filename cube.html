@@ -86,12 +86,60 @@
         <div id="bottom"><br>BOTTOM</div>
       </div>
     </div>
-    <input type="range" id="speed" value="" min="0" max="50" value="40"><p id="speedind">15 seconds per revolution</p>
+    <input type="range" id="speed" value="" min="0" max="50" value="40"><p id="speedind">15 seconds per revolution</p><br>
+    Show Front<input id="frontshown" type="checkbox" checked><br>
+    Show Back<input id="backshown" type="checkbox" checked><br>
+    Show Left<input id="leftshown" type="checkbox" checked><br>
+    Show Right<input id="rightshown" type="checkbox" checked><br>
+    Show Top<input id="topshown" type="checkbox" checked><br>
+    Show Bottom<input id="bottomshown" type="checkbox" checked><br>
     <script>
       document.getElementById("speed").addEventListener("change", function(){
         var speed = (50 - parseInt(document.getElementById("speed").value)) + 5;
         document.getElementById("speedind").innerHTML = speed + " seconds per revolution";
         document.getElementById("time").innerHTML = "#box:hover{\n  animation: rotate " + speed + "s linear infinite;\n}"
+      });
+      document.getElementById("frontshown").addEventListener("change", function(){
+        if(document.getElementById("frontshown").checked){
+          document.getElementById("front").style.display = "block";
+        } else {
+          document.getElementById("front").style.display = "none";
+        }
+      });
+      document.getElementById("backshown").addEventListener("change", function(){
+        if(document.getElementById("backshown").checked){
+          document.getElementById("back").style.display = "block";
+        } else {
+          document.getElementById("back").style.display = "none";
+        }
+      });
+      document.getElementById("leftshown").addEventListener("change", function(){
+        if(document.getElementById("leftshown").checked){
+          document.getElementById("left").style.display = "block";
+        } else {
+          document.getElementById("left").style.display = "none";
+        }
+      });
+      document.getElementById("rightshown").addEventListener("change", function(){
+        if(document.getElementById("rightshown").checked){
+          document.getElementById("right").style.display = "block";
+        } else {
+          document.getElementById("right").style.display = "none";
+        }
+      });
+      document.getElementById("topshown").addEventListener("change", function(){
+        if(document.getElementById("topshown").checked){
+          document.getElementById("top").style.display = "block";
+        } else {
+          document.getElementById("top").style.display = "none";
+        }
+      });
+      document.getElementById("bottomshown").addEventListener("change", function(){
+        if(document.getElementById("bottomshown").checked){
+          document.getElementById("bottom").style.display = "block";
+        } else {
+          document.getElementById("bottom").style.display = "none";
+        }
       });
     </script>
   </body>
