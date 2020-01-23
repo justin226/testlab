@@ -4,6 +4,67 @@
     <title>
       CSS Cube Test
     </title>
+    <style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
     <style id="time">
       #box:hover{
         animation: rotate 15s linear infinite;
@@ -20,7 +81,8 @@
       body{
         background-color: gray;
       }
-      
+    </style>
+    <style id="automatic">
       #box{
         width: 400px;
         transform-style: preserve-3d;
@@ -29,7 +91,8 @@
         text-align: center;
         transition-timing-function: ease-in-out;
       }
-      
+    </style>
+    <style>
       #box div{
         position: absolute;
         width: 400px;
@@ -93,11 +156,17 @@
     Show Right<input id="rightshown" type="checkbox" checked><br>
     Show Top<input id="topshown" type="checkbox" checked><br>
     Show Bottom<input id="bottomshown" type="checkbox" checked><br>
+    <label class="switch">
+      <input id="auto" type="checkbox">
+      <span class="slider round"></span>
+    </label>
     <script>
+      var speed;
       document.getElementById("speed").addEventListener("change", function(){
-        var speed = (60 - parseInt(document.getElementById("speed").value));
+        speed = (60 - parseInt(document.getElementById("speed").value));
         document.getElementById("speedind").innerHTML = speed + " seconds per revolution";
         document.getElementById("time").innerHTML = "#box:hover{\n  animation: rotate " + speed + "s linear infinite;\n}"
+        document.getElementById("automatic").innerHTML = "#box{\n  width: 400px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 80px impact;\n  text-align: center;\n  transition-timing-function: ease-in-out;\n  animation: rotate " + speed + " linear infinite;}";
       });
       document.getElementById("frontshown").addEventListener("change", function(){
         if(document.getElementById("frontshown").checked){
@@ -139,6 +208,13 @@
           document.getElementById("bottom").style.display = "block";
         } else {
           document.getElementById("bottom").style.display = "none";
+        }
+      });
+      document.getElementById("auto").addEventListener("change", function(){
+        if(document.getElementById("auto").checked){
+          document.getElementById("automatic").innerHTML = "#box{\n  width: 400px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 80px impact;\n  text-align: center;\n  transition-timing-function: ease-in-out;\n  animation: rotate " + speed + " linear infinite;}";
+        } else {
+          document.getElementById("automatic").innerHTML = "#box{\n  width: 400px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 80px impact;\n  text-align: center;\n  transition-timing-function: ease-in-out;}";
         }
       });
     </script>
