@@ -86,7 +86,7 @@
         <div id="bottom"><br>BOTTOM</div>
       </div>
     </div>
-    <input type="range" id="speed" value="" min="0" max="50" value="40"><p id="speedind">15 seconds per revolution</p><br>
+    <input type="range" id="speed" value="45" min="0" max="60"><p id="speedind">15 seconds per revolution</p><br>
     Show Front<input id="frontshown" type="checkbox" checked><br>
     Show Back<input id="backshown" type="checkbox" checked><br>
     Show Left<input id="leftshown" type="checkbox" checked><br>
@@ -95,7 +95,7 @@
     Show Bottom<input id="bottomshown" type="checkbox" checked><br>
     <script>
       document.getElementById("speed").addEventListener("change", function(){
-        var speed = (50 - parseInt(document.getElementById("speed").value)) + 5;
+        var speed = (60 - parseInt(document.getElementById("speed").value));
         document.getElementById("speedind").innerHTML = speed + " seconds per revolution";
         document.getElementById("time").innerHTML = "#box:hover{\n  animation: rotate " + speed + "s linear infinite;\n}"
       });
