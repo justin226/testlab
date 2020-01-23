@@ -4,10 +4,44 @@
     <title>
     </title>
     <style>
-      <div id="container">
-      </div>
+      #container{
+        width: 400px;
+        height: 400px;
+        margin: 200px auto;
+        perspective: 800px;
+      }
+      
+      body{
+        background-color: gray;
+      }
+      
+      #box{
+        width: 400px;
+        transform-style: preserve-3d;
+        color: orange;
+        font: 80px impact;
+        text-align: center;
+        animation: rotate 15s linear infinite;
+      }
+      
+      #box div{
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        opacity
+      }
     </style>
   </head>
   <body>
+    <div id="container">
+      <div id="box">
+        <div id="front">FRONT</div>
+        <div id="back">BACK</div>
+        <div id="left">LEFT</div>
+        <div id="right">RIGHT</div>
+        <div id="top">TOP</div>
+        <div id="bottom">BOTTOM</div>
+      </div>
+    </div>
   </body>
 </html>
