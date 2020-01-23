@@ -86,11 +86,11 @@
         <div id="bottom"><b>BOTTOM</div>
       </div>
     </div>
-    <input type="range" id="speed" value="" min="0" max="50" value="40"><p id="speedind">15 revolutions per second</p>
+    <input type="range" id="speed" value="" min="0" max="50" value="40"><p id="speedind">15 seconds per revolution</p>
     <script>
       document.getElementById("speed").addEventListener("change", function(){
         var speed = (50 - parseInt(document.getElementById("speed").value)) + 5;
-        document.getElementById("speedind").innerHTML = speed + " revolutions per second";
+        document.getElementById("speedind").innerHTML = speed + " seconds per revolution";
         document.getElementById("time").innerHTML = "#box:hover{\n  animation: rotate " + speed + "s linear infinite;\n}"
       });
     </script>
