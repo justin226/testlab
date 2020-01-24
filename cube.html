@@ -194,7 +194,7 @@
         document.getElementById("speedind").innerHTML = speed + " seconds per revolution";
         document.getElementById("time").innerHTML = "#box:hover{\n  animation: rotate " + speed + "s linear infinite;\n}";
         if (auto) {
-          document.getElementById("automatic").innerHTML = "#box{\n  width: 400px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 80px impact;\n  text-align: center;\n  transition-timing-function: ease-in-out;\n  transform-origin: center;\n  animation: rotate " + speed + "s linear infinite;}";
+          document.getElementById("automatic").innerHTML = "#box{\n  width: 400px;\n  height: 400px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 80px impact;\n  text-align: center;\n  transition-timing-function: ease-in-out;\n  transform-origin: center;\n  animation: rotate " + speed + "s linear infinite;}";
         }
       });
       document.getElementById("frontshown").addEventListener("change", function() {
