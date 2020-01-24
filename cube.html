@@ -161,7 +161,7 @@ input:checked + .slider:before {
       <span class="slider round"></span>
     </label>
     <script>
-      var speed;
+      var speed = 15;
       document.getElementById("speed").addEventListener("change", function(){
         speed = (60 - parseInt(document.getElementById("speed").value));
         document.getElementById("speedind").innerHTML = speed + " seconds per revolution";
@@ -212,7 +212,7 @@ input:checked + .slider:before {
       });
       document.getElementById("auto").addEventListener("change", function(){
         if(document.getElementById("auto").checked){
-          document.getElementById("automatic").innerHTML = "#box{\n  width: 400px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 80px impact;\n  text-align: center;\n  transition-timing-function: ease-in-out;\n  animation: rotate " + speed + " linear infinite;}";
+          document.getElementById("automatic").innerHTML = "#box{\n  width: 400px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 80px impact;\n  text-align: center;\n  transition-timing-function: ease-in-out;\n  animation: rotate " + speed + "s linear infinite;}";
         } else {
           document.getElementById("automatic").innerHTML = "#box{\n  width: 400px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 80px impact;\n  text-align: center;\n  transition-timing-function: ease-in-out;}";
         }
