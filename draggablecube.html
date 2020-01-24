@@ -74,10 +74,7 @@
 
     </style>
     <style id="time">
-      #box:hover {
-        animation: rotate 15s linear infinite;
-      }
-
+      
     </style>
     <style>
       #container {
@@ -200,7 +197,7 @@
     -Y<input type="radio" id="-y" name="rotate">
     Z<input type="radio" id="z" name="rotate">
     -Z<input type="radio" id="-z" name="rotate"><br>
-    Automatic spin<br>
+    Spin<br>
     <label class="switch">
       <input id="auto" type="checkbox">
       <span class="slider round"></span>
@@ -211,7 +208,7 @@
       document.getElementById("speed").addEventListener("change", function() {
         speed = (60 - parseInt(document.getElementById("speed").value));
         document.getElementById("speedind").innerHTML = speed + " seconds per revolution";
-        document.getElementById("time").innerHTML = "#box:hover{\n  animation: rotate " + speed + "s linear infinite;\n}";
+        //document.getElementById("time").innerHTML = "#box:hover{\n  animation: rotate " + speed + "s linear infinite;\n}";
         if (auto) {
           document.getElementById("automatic").innerHTML = "#box{\n  width: 200px;\n  height: 200px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 40px impact;\n  text-align: center;\n  transition-timing-function: ease-in-out;\n  transform-origin: center;\n  animation: rotate " + speed + "s linear infinite;}";
         }
