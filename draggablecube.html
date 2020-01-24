@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>
+      CSS Cube Test
+    </title>
+    <style>
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      #draggable {
+        position: absolute;
+        top: 0px;
+        left: 100px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      input:checked+.slider {
+        background-color: #2196F3;
+      }
+
+      input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+
+      input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+
+    </style>
+    <style id="time">
+      #box:hover {
+        animation: rotate 15s linear infinite;
+      }
+
+    </style>
+    <style>
+      #container {
+        width: 200px;
+        height: 200px;
+        margin: 100px auto;
+        perspective: 800px;
+        transform-origin: center;
+      }
+
+      body {
+        background-color: gray;
+      }
+
+    </style>
+    <style id="automatic">
+      #box {
+        width: 200px;
+        height: 200px;
+        transform-style: preserve-3d;
+        color: orange;
+        font: 40px impact;
+        text-align: center;
+        transform-origin: center;
+      }
+
+    </style>
+    <style>
+      #box div {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        opacity: .8;
+      }
+
+      #front {
+        transform: translateZ(100px);
+        background-color: #1f122c;
+      }
+
+      #back {
+        transform: rotateY(180deg) translateZ(100px);
+        background-color: #1f122c;
+      }
+
+      #left {
+        transform: rotateY(-90deg) translateX(-100px);
+        background-color: #1f122c;
+        transform-origin: left;
+      }
+
+      #right {
+        transform: rotateY(90deg) translateX(100px);
+        background-color: #1f122c;
+        transform-origin: right;
+      }
+
+      #top {
+        transform: rotateX(-90deg) translateY(-100px);
+        background-color: #1f122c;
+        transform-origin: top;
+      }
+
+      #bottom {
+        transform: rotateX(90deg) translateY(100px);
+        background-color: #1f122c;
+        transform-origin: bottom;
+      }
+
+    </style>
+    <style id="rotatekeyframe">
+      @keyframes rotate {
+        0% {
+          transform: rotateY(0deg);
+        }
+
+        100% {
+          transform: rotateY(360deg);
+        }
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="draggable">
+      <div id="draggableheader">
+        <div id="container">
+          <div id="box">
+            <div id="front"><br>FRONT</div>
+            <div id="back"><br>BACK</div>
+            <div id="left"><br>LEFT</div>
+            <div id="right"><br>RIGHT</div>
+            <div id="top"><br>TOP</div>
+            <div id="bottom"><br>BOTTOM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <input type="range" id="speed" value="45" min="0" max="59">
+    <p id="speedind">15 seconds per revolution</p><br>
+    Show Front<input id="frontshown" type="checkbox" checked><br>
+    Show Back<input id="backshown" type="checkbox" checked><br>
+    Show Left<input id="leftshown" type="checkbox" checked><br>
+    Show Right<input id="rightshown" type="checkbox" checked><br>
+    Show Top<input id="topshown" type="checkbox" checked><br>
+    Show Bottom<input id="bottomshown" type="checkbox" checked><br>
+    Rotate on X<input type="radio" id="x" name="rotate">
+    -X<input type="radio" id="-x" name="rotate">
+    Y<input type="radio" id="y" name="rotate" checked>
+    -Y<input type="radio" id="-y" name="rotate">
+    Z<input type="radio" id="z" name="rotate">
+    -Z<input type="radio" id="-z" name="rotate"><br>
+    Automatic spin<br>
+    <label class="switch">
+      <input id="auto" type="checkbox">
+      <span class="slider round"></span>
+    </label>
+    <script>
+      var speed = 15;
+      var auto = false;
+      document.getElementById("speed").addEventListener("change", function() {
+        speed = (60 - parseInt(document.getElementById("speed").value));
+        document.getElementById("speedind").innerHTML = speed + " seconds per revolution";
+        document.getElementById("time").innerHTML = "#box:hover{\n  animation: rotate " + speed + "s linear infinite;\n}";
+        if (auto) {
+          document.getElementById("automatic").innerHTML = "#box{\n  width: 200px;\n  height: 200px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 40px impact;\n  text-align: center;\n  transition-timing-function: ease-in-out;\n  transform-origin: center;\n  animation: rotate " + speed + "s linear infinite;}";
+        }
+      });
+      document.getElementById("frontshown").addEventListener("change", function() {
+        if (document.getElementById("frontshown").checked) {
+          document.getElementById("front").style.display = "block";
+        } else {
+          document.getElementById("front").style.display = "none";
+        }
+      });
+      document.getElementById("backshown").addEventListener("change", function() {
+        if (document.getElementById("backshown").checked) {
+          document.getElementById("back").style.display = "block";
+        } else {
+          document.getElementById("back").style.display = "none";
+        }
+      });
+      document.getElementById("leftshown").addEventListener("change", function() {
+        if (document.getElementById("leftshown").checked) {
+          document.getElementById("left").style.display = "block";
+        } else {
+          document.getElementById("left").style.display = "none";
+        }
+      });
+      document.getElementById("rightshown").addEventListener("change", function() {
+        if (document.getElementById("rightshown").checked) {
+          document.getElementById("right").style.display = "block";
+        } else {
+          document.getElementById("right").style.display = "none";
+        }
+      });
+      document.getElementById("topshown").addEventListener("change", function() {
+        if (document.getElementById("topshown").checked) {
+          document.getElementById("top").style.display = "block";
+        } else {
+          document.getElementById("top").style.display = "none";
+        }
+      });
+      document.getElementById("bottomshown").addEventListener("change", function() {
+        if (document.getElementById("bottomshown").checked) {
+          document.getElementById("bottom").style.display = "block";
+        } else {
+          document.getElementById("bottom").style.display = "none";
+        }
+      });
+      document.getElementById("auto").addEventListener("change", function() {
+        if (document.getElementById("auto").checked) {
+          auto = true;
+          document.getElementById("automatic").innerHTML = "#box{\n  width: 200px;\n  height: 200px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 40px impact;\n  text-align: center;\n  transform-origin: center; transition-timing-function: ease-in-out;\n  animation: rotate " + speed + "s linear infinite;}";
+        } else {
+          auto = false;
+          document.getElementById("automatic").innerHTML = "#box{\n  width: 200px;\n  height: 200px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 40px impact;\n  text-align: center;\n  transform-origin: center;\n  transition-timing-function: ease-in-out;}";
+        }
+      });
+      document.getElementById("x").addEventListener("change", function() {
+        if (document.getElementById("x").checked) {
+          document.getElementById("rotatekeyframe").innerHTML = "@keyframes rotate {\n  0% {\n    transform: rotateX(0deg);\n  }\n  100% {\n  transform: rotateX(360deg);\n  }\n}"
+        }
+      });
+      document.getElementById("-x").addEventListener("change", function() {
+        if (document.getElementById("-x").checked) {
+          document.getElementById("rotatekeyframe").innerHTML = "@keyframes rotate {\n  0% {\n    transform: rotateX(360deg);\n  }\n  100% {\n  transform: rotateX(0deg);\n  }\n}"
+        }
+      });
+      document.getElementById("y").addEventListener("change", function() {
+        if (document.getElementById("y").checked) {
+          document.getElementById("rotatekeyframe").innerHTML = "@keyframes rotate {\n  0% {\n    transform: rotateY(0deg);\n  }\n  100% {\n  transform: rotateY(360deg);\n  }\n}"
+        }
+      });
+      document.getElementById("-y").addEventListener("change", function() {
+        if (document.getElementById("-y").checked) {
+          document.getElementById("rotatekeyframe").innerHTML = "@keyframes rotate {\n  0% {\n    transform: rotateY(360deg);\n  }\n  100% {\n  transform: rotateY(0deg);\n  }\n}"
+        }
+      });
+      document.getElementById("z").addEventListener("change", function() {
+        if (document.getElementById("z").checked) {
+          document.getElementById("rotatekeyframe").innerHTML = "@keyframes rotate {\n  0% {\n    transform: rotateZ(0deg);\n  }\n  100% {\n  transform: rotateZ(360deg);\n  }\n}"
+        }
+      });
+      document.getElementById("-z").addEventListener("change", function() {
+        if (document.getElementById("-z").checked) {
+          document.getElementById("rotatekeyframe").innerHTML = "@keyframes rotate {\n  0% {\n    transform: rotateZ(360deg);\n  }\n  100% {\n  transform: rotateZ(0deg);\n  }\n}"
+        }
+      });
+
+    </script>
+    <script>
+    	dragElement(document.getElementById("draggable"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+    </script>
+  </body>
+
+</html>
