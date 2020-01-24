@@ -242,7 +242,7 @@
       document.getElementById("auto").addEventListener("change", function() {
         if (document.getElementById("auto").checked) {
           auto = true;
-          document.getElementById("automatic").innerHTML = "#box{\n  width: 400px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 80px impact;\n  text-align: center;\n  transform-origin: center; transition-timing-function: ease-in-out;\n  animation: rotate " + speed + "s linear infinite;}";
+          document.getElementById("automatic").innerHTML = "#box{\n  width: 400px;\n  height: 400px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 80px impact;\n  text-align: center;\n  transform-origin: center; transition-timing-function: ease-in-out;\n  animation: rotate " + speed + "s linear infinite;}";
         } else {
           auto = false;
           document.getElementById("automatic").innerHTML = "#box{\n  width: 400px;\n  height: 400px;\n  transform-style: preserve-3d;\n  color: orange;\n  font: 80px impact;\n  text-align: center;\n  transform-origin: center;\n  transition-timing-function: ease-in-out;}";
